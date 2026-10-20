@@ -1,91 +1,134 @@
-HOODED SEEKER - ANIMATION GUIDE  (FREE)
+HOODED SEEKER - GUÍA DE ANIMACIONES (GRATIS)
+
 Primitive Pixels
 
-This is a quick doc rundown that you can reference if you ever get stuck
-trying to figure out how to rig up the animations or lining up VFX to frames.
+Este es un documento rápido de referencia que puedes consultar si alguna vez te atascas intentando configurar las animaciones o alinear los efectos visuales (VFX) con los fotogramas.
 
-----------------------------------------------------------------
-TWO THINGS TO KNOW FIRST
-----------------------------------------------------------------
-1. THE FEET POINT (PIVOT)
-   The frames are different sizes, because a sword swing needs more
-   room than standing still. Every animation has a "feet" point: the
-   spot on the ground between his feet, counted in pixels from the
-   top-left corner of a frame. Set that as the sprite's origin and
-   every animation lines up, whatever its size.
+DOS COSAS QUE DEBES SABER PRIMERO
+1. EL PUNTO DE LOS PIES (PIVOT)
 
-2. READING A SHEET
-   Every sheet is one row of frames, left to right. The frame size and
-   the number of frames are in the file name: Seeker_Void_Run_30x30_10f.png
-   means each frame is 30 x 30 and there are 10 frames.
+Los fotogramas tienen diferentes tamaños porque un ataque con espada necesita más espacio que una animación de reposo. Cada animación tiene un punto de "pies": el lugar en el suelo entre sus pies, medido en píxeles desde la esquina superior izquierda del fotograma.
 
-----------------------------------------------------------------
-THE ANIMATIONS
-----------------------------------------------------------------
+Configura ese punto como el origen (pivot) del sprite y todas las animaciones quedarán alineadas, independientemente de su tamaño.
 
-IDLE
-  File      Seeker_Void_Idle_30x30_24f.png
-  Frames    24, each 30 x 30, loops
-  Speed     every frame 100 ms (10 fps)
-  Feet      15, 28  (the pivot, see the top of this file)
+2. LEYENDO UNA HOJA DE SPRITES
 
-  Loop it whenever he is standing still.
+Cada hoja contiene una sola fila de fotogramas, de izquierda a derecha.
 
-RUN
-  File      Seeker_Void_Run_30x30_10f.png
-  Frames    10, each 30 x 30, loops
-  Speed     every frame 70 ms (14 fps)
-  Feet      17, 28  (the pivot, see the top of this file)
+El tamaño de cada fotograma y la cantidad de fotogramas están indicados en el nombre del archivo:
 
-  Loop it while he moves. The timing suits a run speed of about
-  140 pixels a second at 1x. Speed the frames up or down with your
-  run speed and the feet won't slide.
+Seeker_Void_Run_30x30_10f.png
 
-JUMPFALL
-  File      Seeker_Void_JumpFall_30x30_28f.png
-  Frames    28, each 30 x 30, plays once
-  Speed     frame by frame: 40, 30, 30, 30, 30, 30, 30, 30, 30,
-            30, 30, 30, 30, 60, 60, 40, 40, 40, 40,
-            40, 40, 40, 40, 40, 40, 40, 60, 80 ms
-  Feet      16, 28  (the pivot, see the top of this file)
+significa que:
 
-  One sheet for the whole jump. Pick the frame from his vertical
-  speed rather than from time:
-    frame 0       takeoff
-    frames 1-12   going up
-    frames 13-14  the top of the jump
-    frames 15-25  falling (loop these for a long fall)
-    frames 26-27  landing
+Cada fotograma mide 30 x 30 píxeles.
+Hay 10 fotogramas.
+LAS ANIMACIONES
+IDLE (Reposo)
 
-ATTACK1
-  File      Seeker_Void_Attack1_90x50_8f.png
-  Frames    8, each 90 x 50, plays once
-  Speed     frame by frame: 40, 40, 60, 40, 60, 40, 60, 80 ms
-  Feet      16, 38  (the pivot, see the top of this file)
+Archivo: Seeker_Void_Idle_30x30_24f.png
 
-  The first swing of the 3-hit combo. The hit lands on frames 3-4.
-  To chain into Attack2, let the player cancel from frame 5 on.
-  When you cancel, let the rest of its FX sheet (FX Split folder)
-  play out where the swing was, so the slash always finishes.
+24 fotogramas de 30 x 30 px
+Se reproduce en bucle
+Velocidad: 100 ms por fotograma (10 FPS)
+Pivot de los pies: 15, 28
 
-HURT
-  File      Seeker_Void_Hurt_55x80_9f.png
-  Frames    9, each 55 x 80, plays once
-  Speed     frame by frame: 40, 60, 50, 50, 50, 60, 60, 80,
-            100 ms
-  Feet      26, 52  (the pivot, see the top of this file)
+Úsala cuando el personaje esté quieto.
 
-  Getting hit, staying in place.
+RUN (Correr)
 
-DEATH
-  File      Seeker_Void_Death_40x50_20f.png
-  Frames    20, each 40 x 50, plays once
-  Speed     frame by frame: 100, 80, 80, 80, 100, 80, 70, 70,
-            70, 70, 70, 80, 80, 80, 80, 80, 80, 80,
-            80, 900 ms
-  Feet      20, 48  (the pivot, see the top of this file)
+Archivo: Seeker_Void_Run_30x30_10f.png
 
-  Play it once and stay on the last frame.
+10 fotogramas de 30 x 30 px
+Se reproduce en bucle
+Velocidad: 70 ms por fotograma (14 FPS)
+Pivot de los pies: 17, 28
 
-----------------------------------------------------------------
-Questions or requests: primitive.pixels.games@gmail.com
+Reprodúcela mientras el personaje se mueve.
+
+La animación está ajustada para una velocidad aproximada de 140 píxeles por segundo a escala 1x.
+
+Puedes acelerar o ralentizar la animación según la velocidad de carrera y los pies seguirán alineados correctamente sin deslizarse.
+
+JUMPFALL (Salto y Caída)
+
+Archivo: Seeker_Void_JumpFall_30x30_28f.png
+
+28 fotogramas de 30 x 30 px
+Se reproduce una sola vez
+Pivot de los pies: 16, 28
+
+Velocidades por fotograma:
+
+40, 30, 30, 30, 30, 30, 30, 30, 30,
+30, 30, 30, 30, 60, 60, 40, 40, 40,
+40, 40, 40, 40, 40, 40, 40, 40, 60, 80 ms
+
+
+Toda la secuencia de salto está incluida en una sola hoja.
+
+Selecciona el fotograma según la velocidad vertical del personaje, no por tiempo:
+
+Frame 0: despegue
+Frames 1-12: subiendo
+Frames 13-14: punto más alto del salto
+Frames 15-25: cayendo (pueden repetirse para caídas largas)
+Frames 26-27: aterrizaje
+ATTACK1 (Ataque 1)
+
+Archivo: Seeker_Void_Attack1_90x50_8f.png
+
+8 fotogramas de 90 x 50 px
+Se reproduce una sola vez
+Pivot de los pies: 16, 38
+
+Velocidades por fotograma:
+
+40, 40, 60, 40, 60, 40, 60, 80 ms
+
+
+Es el primer golpe del combo de 3 ataques.
+
+El impacto ocurre en los fotogramas 3 y 4.
+
+Para encadenar con Attack2, permite que el jugador cancele la animación a partir del fotograma 5.
+
+Cuando se cancele, deja que los efectos visuales restantes (carpeta FX Split) terminen de reproducirse en la posición donde ocurrió el golpe para que el corte siempre se vea completo.
+
+HURT (Daño)
+
+Archivo: Seeker_Void_Hurt_55x80_9f.png
+
+9 fotogramas de 55 x 80 px
+Se reproduce una sola vez
+Pivot de los pies: 26, 52
+
+Velocidades por fotograma:
+
+40, 60, 50, 50, 50, 60, 60, 80, 100 ms
+
+
+Animación para cuando recibe daño y permanece en el sitio.
+
+DEATH (Muerte)
+
+Archivo: Seeker_Void_Death_40x50_20f.png
+
+20 fotogramas de 40 x 50 px
+Se reproduce una sola vez
+Pivot de los pies: 20, 48
+
+Velocidades por fotograma:
+
+100, 80, 80, 80, 100, 80, 70, 70,
+70, 70, 70, 80, 80, 80, 80, 80,
+80, 80, 80, 900 ms
+
+
+Reprodúcela una sola vez y deja al personaje en el último fotograma.
+
+Preguntas o solicitudes: primitive.pixels.games@gmail.com
+
+Para Unity
+
+Lo más importante de esta guía son los valores de Pivot (Feet). Cuando importes cada spritesheet, configura el pivot personalizado con esos valores para que todas las animaciones (Idle, Run, Jump, Attack, Hurt y Death) queden alineadas y el personaje no "salte" de posición al cambiar de animación.
