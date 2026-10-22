@@ -6,12 +6,10 @@ public class BackgroundParalax : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float EndPoint;
     [SerializeField] private float StartPoint;
-    [SerializeField] private GameObject Panel;
     [SerializeField] private RectTransform rec;
 
     void Start()
     {
-        Panel = gameObject;
         rec = GetComponent<RectTransform>();
     }
 
