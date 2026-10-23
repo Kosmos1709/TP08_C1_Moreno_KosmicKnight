@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MovimentPlayer :  AbstractPlayerstats
 {
-   
+    [SerializeField] private Animator animator;
     void Update()
     {
         float horizontalX=  Input.GetAxis("Horizontal");
@@ -17,8 +17,15 @@ public class MovimentPlayer :  AbstractPlayerstats
         {
             rb.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
         }
+
+        // condicionales para animaciones
+            animator.SetFloat("SpeedAnimator", Mathf.Abs(horizontalX));
+            animator.SetFloat("SpeedJump", rb.linearVelocity.y);
+            animator.SetBool("Grounded", isGrounded);
+
+
     }
-    //esto dibuja el raycast par el dev 
+    //esto dibuja el raycast par el dev
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
