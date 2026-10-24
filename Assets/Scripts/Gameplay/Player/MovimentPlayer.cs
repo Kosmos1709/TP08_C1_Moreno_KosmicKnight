@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class MovimentPlayer :  AbstractPlayerstats
 {
+    [SerializeField] private AtackPlayer atackPlayer;
     [SerializeField] private Animator animator;
+    [SerializeField] public float horizonLook;
+    public float LocalscaleVar;
     void Update()
     {
         float horizontalX=  Input.GetAxis("Horizontal");
@@ -22,8 +25,18 @@ public class MovimentPlayer :  AbstractPlayerstats
             animator.SetFloat("SpeedAnimator", Mathf.Abs(horizontalX));
             animator.SetFloat("SpeedJump", rb.linearVelocity.y);
             animator.SetBool("Grounded", isGrounded);
-
-
+            animator.SetBool("attacking", atackPlayer.attacking);
+        // cambiar direccion de la mira del personaje 
+            horizonLook = Input.GetAxisRaw("Horizontal");
+        LocalscaleVar = transform.localScale.x;
+        if (horizonLook > 0)
+        {
+            transform.localScale = new Vector3(1,1,1);
+        }
+        if (horizonLook < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
     //esto dibuja el raycast par el dev
     void OnDrawGizmos()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class AbstractPlayerstats : MonoBehaviour
 {
-    public int health = 100;
-    public int Damage = 10;
+    public int health = 7;
+    public int Damage = 1;
     public int JumpForce = 5;
     public int speed = 5;
     public int Gold = 0;

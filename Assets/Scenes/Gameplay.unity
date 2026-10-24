@@ -217,13 +217,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 43991605}
+  - component: {fileID: 43991607}
   - component: {fileID: 43991606}
   - component: {fileID: 43991604}
   - component: {fileID: 43991603}
   - component: {fileID: 43991602}
   - component: {fileID: 43991601}
   - component: {fileID: 43991600}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +270,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.9375, y: 0.9375}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 2.8125, y: 1.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -302,7 +303,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &43991602
 Animator:
   serializedVersion: 7
@@ -379,7 +380,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.8125, y: 1.5625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -408,7 +409,10 @@ MonoBehaviour:
     m_Bits: 64
   rb: {fileID: 0}
   isGrounded: 0
+  atackPlayer: {fileID: 43991607}
   animator: {fileID: 43991602}
+  horizonLook: 0
+  LocalscaleVar: 0
 --- !u!4 &43991605
 Transform:
   m_ObjectHideFlags: 0
@@ -418,10 +422,11 @@ Transform:
   m_GameObject: {fileID: 43991599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.644, y: 0.907, z: 0}
+  m_LocalPosition: {x: -2.76, y: 1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 57282606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &43991606
@@ -439,6 +444,54 @@ MonoBehaviour:
   HealBar: {fileID: 41600176}
   ForceKnockback: 10
   rb: {fileID: 0}
+--- !u!114 &43991607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43991599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1c3b0d32bca0e49bb981ae7a0a4394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtackPlayer
+  ProyectilPrefab: {fileID: 5578049482720798536, guid: f1b8fee36ece21646bc5e61847cae89c, type: 3}
+  FirePointRight: {fileID: 57282606}
+  movimentPlayer: {fileID: 43991604}
+  CDAtack: 0.2
+  attacking: 0
+--- !u!1 &57282605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57282606}
+  m_Layer: 0
+  m_Name: fire Point right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &57282606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57282605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.18, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43991605}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457154310
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,11 +581,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1255151084953338484, guid: e703f691aa466d547ae033f796ce6203, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.644
+      value: -2.75
       objectReference: {fileID: 0}
     - target: {fileID: 1255151084953338484, guid: e703f691aa466d547ae033f796ce6203, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.907
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 1255151084953338484, guid: e703f691aa466d547ae033f796ce6203, type: 3}
       propertyPath: m_LocalPosition.z
@@ -566,9 +619,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6150079630148464481, guid: e703f691aa466d547ae033f796ce6203, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7279087785444545151, guid: e703f691aa466d547ae033f796ce6203, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279087785444545151, guid: e703f691aa466d547ae033f796ce6203, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
