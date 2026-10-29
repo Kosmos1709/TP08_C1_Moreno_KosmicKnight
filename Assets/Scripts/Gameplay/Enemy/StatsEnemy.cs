@@ -4,7 +4,6 @@ public class StatsEnemy : MonoBehaviour
 {
     private Animator animator;
     [SerializeField] public int health = 2;
-    [SerializeField] private float damage = 1f;
     [SerializeField] public bool isDead = false;
     [SerializeField] private AudioSource deadSound;
     [SerializeField] public float countDown = 1f;
@@ -24,6 +23,7 @@ public class StatsEnemy : MonoBehaviour
         {
             Die();
         }
+
     }
     //Funcion para morir agregare count para la animacion de muerte 
     void Die()

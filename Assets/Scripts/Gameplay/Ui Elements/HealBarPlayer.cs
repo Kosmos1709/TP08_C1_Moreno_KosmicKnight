@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class HealBarPlayer : MonoBehaviour
 {
     [SerializeField] private Slider HealBar;
-    [SerializeField] private float ForceKnockback = 10f;
+    [SerializeField] private float ForceKnockback = 1f;
     [SerializeField] private Rigidbody2D rb;
 
 

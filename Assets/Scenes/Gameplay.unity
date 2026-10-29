@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealBarPlayer
   HealBar: {fileID: 41600176}
-  ForceKnockback: 10
+  ForceKnockback: 5
   rb: {fileID: 0}
 --- !u!114 &43991607
 MonoBehaviour:
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 311148870}
   - component: {fileID: 311148872}
   - component: {fileID: 311148871}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: 'Particle '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

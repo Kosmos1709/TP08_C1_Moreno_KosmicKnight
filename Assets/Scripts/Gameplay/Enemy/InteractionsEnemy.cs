@@ -5,7 +5,9 @@ public class InteractionsEnemy : abstractEnemy
     private StatsEnemy statsenemy;
     [SerializeField] private Animator animator;
     [SerializeField] private bool Change;
-    
+    [SerializeField] private float damage = 1f;
+
+
     void Start()
     {
         statsenemy = GetComponent<StatsEnemy>();
@@ -14,7 +16,11 @@ public class InteractionsEnemy : abstractEnemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Mele"))
+        {
+            statsenemy.TakeDamage(damage);
+
+        }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             speed *= -1;
