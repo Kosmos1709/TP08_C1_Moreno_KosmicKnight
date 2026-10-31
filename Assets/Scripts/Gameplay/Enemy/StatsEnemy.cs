@@ -20,25 +20,14 @@ public class StatsEnemy : MonoBehaviour
 
     void Start()
     {
+        CanWalk = true;
         colliderThisGO = GetComponent<Collider2D>();
         isDead = false;
-        health = 2;
+        
         animator = GetComponent<Animator>();
-        animator.SetBool("Dead", false);
+        animator.SetBool("Die", false);
     }
 
-    //recibir daño del jugador 
-    public void TakeDamage(float damage)
-    {
-        CanWalk = false;
-        animator.SetBool("Hit",true);
-        health -= (int)damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-
-    }
     //Funcion para morir agregare count para la animacion de muerte 
     void Die()
     {
@@ -56,6 +45,18 @@ public class StatsEnemy : MonoBehaviour
         }
     }
     
+    //recibir daño del jugador 
+    public void TakeDamage(float damage)
+    {
+        CanWalk = false;
+        animator.SetBool("Hit",true);
+        health -= (int)damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+
+    }
     public void stopHit()
     {
         //agregar bool de golpe
@@ -63,11 +64,15 @@ public class StatsEnemy : MonoBehaviour
         animator.SetBool("Hit", false);
 
     }
-
+    public void StartAtack()
+    {
+        CanWalk = false;
+        animator.SetBool("Atack", true);
+    }
     public void StopAttack()
     {
         CanWalk = true;
-        animator.SetBool("atack", false);
+        animator.SetBool("Atack", false);
     }
     public void DestroyObject()
     {

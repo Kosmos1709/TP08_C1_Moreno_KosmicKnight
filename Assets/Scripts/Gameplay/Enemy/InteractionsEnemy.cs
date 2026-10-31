@@ -5,6 +5,7 @@ public class InteractionsEnemy : abstractEnemy
     private StatsEnemy statsenemy;
     [SerializeField] private Animator animator;
     [SerializeField] private bool Change;
+    [SerializeField] private bool AtackBoll;
     [SerializeField] private float damage = 1f;
 
 
@@ -16,7 +17,9 @@ public class InteractionsEnemy : abstractEnemy
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Mele"))
+        
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Mele") || collision.gameObject.layer == LayerMask.NameToLayer("Proyectile"))
         {
             statsenemy.TakeDamage(damage);
 
@@ -42,18 +45,33 @@ public class InteractionsEnemy : abstractEnemy
     }
     void Update()
     {
+      //esta condicional solo ejecuta atacar cuando sea verdadero
+        if (AtackBoll)
+        {
+            statsenemy.StartAtack();
+        }
         //Chekea si coliciona con una pared para cambiar de direccion 
         if (Change)
         {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, RaycastDistance, floorLayer);
-        Wall = hit.collider != null;
+            //bajo la ubicacion del raycast para que pueda tocar al player
+            Vector2 origen = (Vector2)transform.position + Vector2.down * 1;
+            RaycastHit2D hit = Physics2D.Raycast(origen, Vector2.left, RaycastDistance, floorLayer);
+            Wall = hit.collider != null;
 
+            //este raycast corrobora si coliciona con el player para ejecutar el ataque
+        RaycastHit2D hitplayer = Physics2D.Raycast(origen, Vector2.left, RaycastDistance, PlayerLayer);
+        AtackBoll = hitplayer.collider != null;
         }
         else
         {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, RaycastDistance, floorLayer);
-        Wall = hit.collider != null ;
+            Vector2 origen = (Vector2)transform.position + Vector2.down * 1;
 
+            RaycastHit2D hit = Physics2D.Raycast(origen, Vector2.right, RaycastDistance, floorLayer);
+            Wall = hit.collider != null ;
+
+            //este raycast corrobora si coliciona con el player para ejecutar el ataque
+        RaycastHit2D hitplayer = Physics2D.Raycast(origen, Vector2.right, RaycastDistance, PlayerLayer);
+        AtackBoll = hitplayer.collider != null;
         }
 
         if (Wall)
