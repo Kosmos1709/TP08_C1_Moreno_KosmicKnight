@@ -7470,6 +7470,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1532860067 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2558526381025479175, guid: 6ad74fcf14659ef40821595c65dfad53, type: 3}
+  m_PrefabInstance: {fileID: 1724848917356984175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690488898
 GameObject:
   m_ObjectHideFlags: 0
@@ -7796,6 +7801,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4862943722744488645, guid: 6ad74fcf14659ef40821595c65dfad53, type: 3}
+      propertyPath: colliderPlayer
+      value: 
+      objectReference: {fileID: 43991600}
+    - target: {fileID: 4862943722744488645, guid: 6ad74fcf14659ef40821595c65dfad53, type: 3}
+      propertyPath: colliderThisGO
+      value: 
+      objectReference: {fileID: 1532860067}
     - target: {fileID: 6642466865581781070, guid: 6ad74fcf14659ef40821595c65dfad53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

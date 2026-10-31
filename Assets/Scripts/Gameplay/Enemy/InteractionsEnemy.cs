@@ -64,10 +64,13 @@ public class InteractionsEnemy : abstractEnemy
             transform.localScale = scale;
             Change = !Change;
         }
-        //movimiento constante 
-        if (statsenemy.isDead == false)
+        //movimiento constante______ primero pasa si esta vivo, luego corrobora que no este en una animacion como "atack" o "hit"
+        if (statsenemy.isDead == false )
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            if (statsenemy.CanWalk==true)
+            {
+                    transform.Translate(Vector2.right * speed * Time.deltaTime);
+            }
 
         }
     }
