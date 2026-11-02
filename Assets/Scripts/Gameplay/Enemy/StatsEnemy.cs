@@ -16,7 +16,9 @@ public class StatsEnemy : MonoBehaviour
     [SerializeField] private Collider2D colliderPlayer;
 
     [Header("Sounds")]
-    [SerializeField] private AudioSource deadSound;
+    [SerializeField] public AudioSource deadSound;
+    [SerializeField] private AudioSource HitSound;
+
 
     void Start()
     {
@@ -33,7 +35,7 @@ public class StatsEnemy : MonoBehaviour
     {
         animator.SetBool("Die", true);
         deadSound.Play();
-        Physics2D.IgnoreCollision(colliderThisGO, colliderPlayer);
+        Physics2D.IgnoreCollision(colliderThisGO, GameObject.Find("Player").GetComponent<Collider2D>());
     }
     //activa el couldown para desaparecer tras morir, lego lo modifico para la animacion de muerte
     void Update()
@@ -50,6 +52,7 @@ public class StatsEnemy : MonoBehaviour
     {
         CanWalk = false;
         animator.SetBool("Hit",true);
+        HitSound.Play();
         health -= (int)damage;
         if (health <= 0)
         {
@@ -68,6 +71,7 @@ public class StatsEnemy : MonoBehaviour
     {
         CanWalk = false;
         animator.SetBool("Atack", true);
+        deadSound.Play();
     }
     public void StopAttack()
     {

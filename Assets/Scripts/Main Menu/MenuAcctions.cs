@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class MenuAccion : MonoBehaviour
 {
     [Header("Buttons")]
+    [SerializeField] private Button BtnContinue;
     [SerializeField] private Button BtnStart;
     [SerializeField] private Button BtnSettings;
     [SerializeField] private Button BtnCredits;
@@ -13,6 +14,7 @@ public class MenuAccion : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject PanelVolume;
     [SerializeField] private GameObject PanelCredits;
+    [SerializeField] private GameObject MenuPanel;
 
     [SerializeField] private AudioSource buttonAudio;
     [SerializeField] private AudioSource BGAudio;
@@ -21,6 +23,7 @@ public class MenuAccion : MonoBehaviour
 
     private void Awake()
     {
+        BtnContinue.onClick.AddListener(OnButtonContinueClick);
         BtnStart.onClick.AddListener(OnButtonStartClick);
         BtnSettings.onClick.AddListener(OnButtonVolumeClick);
         BtnCredits.onClick.AddListener(OnButtonCreditsClick);
@@ -30,13 +33,19 @@ public class MenuAccion : MonoBehaviour
     }
     private void OnDestroy()
     {
+        BtnContinue.onClick.RemoveAllListeners();
         BtnStart.onClick.RemoveAllListeners();
         BtnSettings.onClick.RemoveAllListeners();
         BtnCredits.onClick.RemoveAllListeners();
         BtnBack.onClick.RemoveAllListeners();
     }
 
-
+    private void OnButtonContinueClick()
+    {
+        buttonAudio.Play();
+        Time.timeScale = 1f;
+        MenuPanel.SetActive(false);
+    }
     private void OnButtonStartClick()
     {
         buttonAudio.Play();

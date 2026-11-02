@@ -4,16 +4,21 @@ public class AtackPlayer : MonoBehaviour
 
 {
     //damage 1
-
+    [Header("Components")]
     [SerializeField] private GameObject ProyectilPrefab;
     [SerializeField] private Transform FirePointRight;
     [SerializeField] private MovimentPlayer movimentPlayer;
+    [Header("Attack Settings")]
     [SerializeField] private float CDAtack = 0.5f;
     [SerializeField] private float timeatack = 0.5f;
     [SerializeField] public bool attacking = false;
-
-
-
+    [Header("Sounds")]
+    [SerializeField] private AudioSource MeleSound;
+    [SerializeField] private AudioSource ProyectilSound;
+    void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player");
+    }
     void Update()
     {
         
@@ -32,14 +37,17 @@ public class AtackPlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(0)&& CDAtack<= 0)
         {
             Atacking ();
+            MeleSound.Play();
             CDAtack = 0.5f;
                 timeatack = 0.5f;
             ShootInAtackPlayer();
+
         }
         //ataque cuerpo a cuerpo
         if (Input.GetMouseButtonDown(1) && !attacking && movimentPlayer.isGrounded)
         {
             Atacking();
+            MeleSound.Play();
         }
     }
     public void Atacking()
@@ -68,6 +76,7 @@ public class AtackPlayer : MonoBehaviour
                 BulletObject.transform.localScale = new Vector3(1, 1, 1);
             }
             BulletObject.Shoot(Mathf.Sign(movimentPlayer.LocalscaleVar));
+            ProyectilSound.Play();
         }
     }
     public void Start()

@@ -15,11 +15,19 @@ public class InteractionsEnemy : abstractEnemy
         rb = GetComponent<Rigidbody2D>();
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Mele") )
+        {
+            statsenemy.TakeDamage(damage);
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
         
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Mele") || collision.gameObject.layer == LayerMask.NameToLayer("Proyectile"))
+        if ( collision.gameObject.layer == LayerMask.NameToLayer("Proyectile"))
         {
             statsenemy.TakeDamage(damage);
 
@@ -46,7 +54,7 @@ public class InteractionsEnemy : abstractEnemy
     void Update()
     {
       //esta condicional solo ejecuta atacar cuando sea verdadero
-        if (AtackBoll)
+        if (AtackBoll && !statsenemy.deadSound.isPlaying)
         {
             statsenemy.StartAtack();
         }
