@@ -6,20 +6,19 @@ public class InteractionsEnemy : abstractEnemy
     [SerializeField] private Animator animator;
     [SerializeField] private bool Change;
     [SerializeField] private bool AtackBoll;
-    [SerializeField] private float damage = 1f;
-
 
     void Start()
     {
         statsenemy = GetComponent<StatsEnemy>();
         rb = GetComponent<Rigidbody2D>();
-
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Mele") )
         {
-            statsenemy.TakeDamage(damage);
+            MovimentPlayer player = FindObjectOfType<MovimentPlayer>();
+            statsenemy.TakeDamage(player.Damage);
         }
 
     }
@@ -29,8 +28,8 @@ public class InteractionsEnemy : abstractEnemy
         
         if ( collision.gameObject.layer == LayerMask.NameToLayer("Proyectile"))
         {
-            statsenemy.TakeDamage(damage);
-
+            MovimentPlayer player = FindObjectOfType<MovimentPlayer>();
+            statsenemy.TakeDamage(player.Damage);
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

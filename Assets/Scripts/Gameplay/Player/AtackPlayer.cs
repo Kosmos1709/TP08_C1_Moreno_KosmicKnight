@@ -4,6 +4,7 @@ public class AtackPlayer : MonoBehaviour
 
 {
     //damage 1
+    [SerializeField] public ActiveProyectileScript activeProyectileScript;
     [Header("Components")]
     [SerializeField] private GameObject ProyectilPrefab;
     [SerializeField] private Transform FirePointRight;
@@ -32,9 +33,8 @@ public class AtackPlayer : MonoBehaviour
         {
             timeatack = 0;
         }
-        Debug.Log(movimentPlayer.horizonLook);
         //ataque a distancia
-        if (Input.GetMouseButtonDown(0)&& CDAtack<= 0)
+        if (Input.GetMouseButtonDown(0)&& CDAtack<= 0 )
         {
             Atacking ();
             MeleSound.Play();
@@ -44,7 +44,7 @@ public class AtackPlayer : MonoBehaviour
 
         }
         //ataque cuerpo a cuerpo
-        if (Input.GetMouseButtonDown(1) && !attacking && movimentPlayer.isGrounded)
+        if (Input.GetMouseButtonDown(1) && !attacking && activeProyectileScript.ActiveProyectile)
         {
             Atacking();
             MeleSound.Play();

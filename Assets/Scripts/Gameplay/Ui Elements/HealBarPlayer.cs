@@ -4,11 +4,17 @@ using UnityEngine.UI;
 
 public class HealBarPlayer : MonoBehaviour
 {
-    [SerializeField] private Slider HealBar;
-    [SerializeField] private float ForceKnockback = 1f;
+    [Header("Gameobjects")]
+    [SerializeField] public Slider HealBar;
+    [SerializeField] private GameObject LosePanel;
+
+    [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] public bool isDead;
     [SerializeField] private Animator animator;
+
+    [Header("Variables")]
+    [SerializeField] private float ForceKnockback = 1f;
+    [SerializeField] public bool isDead;
 
 
     private void Awake()
@@ -51,5 +57,6 @@ public class HealBarPlayer : MonoBehaviour
     {
         Time.timeScale = 0f;
         animator.speed = 0;
+        LosePanel.SetActive(true);
     }
 }

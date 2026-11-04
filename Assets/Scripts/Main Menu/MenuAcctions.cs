@@ -28,7 +28,7 @@ public class MenuAccion : MonoBehaviour
         BtnSettings.onClick.AddListener(OnButtonVolumeClick);
         BtnCredits.onClick.AddListener(OnButtonCreditsClick);
         BtnBack.onClick.AddListener(OnButtonHTPClick);
-
+        Time.timeScale = 1f;
 
     }
     private void OnDestroy()

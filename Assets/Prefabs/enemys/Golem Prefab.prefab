@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5606a51656794c47852e9443100afd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatsEnemy
-  health: 3
-  isDead: 0
+  health: 20
+  isDead: 1
   CanWalk: 0
   colliderThisGO: {fileID: 2558526381025479175}
   colliderPlayer: {fileID: 0}
@@ -83,7 +83,6 @@ MonoBehaviour:
   animator: {fileID: 5122803024046916170}
   Change: 0
   AtackBoll: 0
-  damage: 1
 --- !u!212 &2644906696643049081
 SpriteRenderer:
   serializedVersion: 2
