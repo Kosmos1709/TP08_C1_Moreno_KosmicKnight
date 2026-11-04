@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class MovimentPlayer :  AbstractPlayerstats
 {
+    [Header("Components")]
     [SerializeField] private AtackPlayer atackPlayer;
     [SerializeField] private HealBarPlayer healbarplayer;
     [SerializeField] private Animator animator;
+    [Header("Variables")]
     [SerializeField] public float horizonLook;
+    [SerializeField] public bool DobleJumpPickeable = false;
+    [SerializeField] public bool DobleJump = false;
     public float LocalscaleVar;
     void Start()
     {
@@ -25,9 +29,25 @@ public class MovimentPlayer :  AbstractPlayerstats
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RaycastDistance, floorLayer);
             isGrounded = hit.collider != null;
 
-            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+            // salto del personaje
+            if ( Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                //consulto si agarro el item y toco el piso, para poder reiniciar el salto doble
+                if (DobleJumpPickeable && isGrounded)
+                {
+                    DobleJump = true;
+                }
+                //si esta en el piso puede saltar sin mas
+                if (isGrounded )
+                {
+                    rb.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                }
+                //y si no esta en el piso y tiene activo el salto doble, puede saltar una vez mas
+                else if (DobleJump )
+                {
+                    rb.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                    DobleJump = false;
+                }
             }
 
             // condicionales para animaciones

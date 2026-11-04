@@ -33,7 +33,7 @@ public class AtackPlayer : MonoBehaviour
         {
             timeatack = 0;
         }
-        //ataque a distancia
+        //ataque a Mele
         if (Input.GetMouseButtonDown(0)&& CDAtack<= 0 )
         {
             Atacking ();
@@ -43,7 +43,7 @@ public class AtackPlayer : MonoBehaviour
             ShootInAtackPlayer();
 
         }
-        //ataque cuerpo a cuerpo
+        //ataque distancia
         if (Input.GetMouseButtonDown(1) && !attacking && activeProyectileScript.ActiveProyectile)
         {
             Atacking();

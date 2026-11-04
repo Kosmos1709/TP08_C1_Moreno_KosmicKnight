@@ -11,6 +11,7 @@ public class HealBarPlayer : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource AudioLose;
 
     [Header("Variables")]
     [SerializeField] private float ForceKnockback = 1f;
@@ -42,6 +43,12 @@ public class HealBarPlayer : MonoBehaviour
     }
     public void Update()
     {
+        //evitar que la barra de vida se pase de los limites
+        if (HealBar.value>7)
+        {
+            HealBar.value = 7;
+        }
+        //evitar que la barra de vida se pase de los limites
         if (HealBar.value <= 0)
         {
             HealBar.value = 0;
@@ -58,5 +65,6 @@ public class HealBarPlayer : MonoBehaviour
         Time.timeScale = 0f;
         animator.speed = 0;
         LosePanel.SetActive(true);
+        AudioLose.Play();
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6594065844786463714}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: More Damage Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,12 +41,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 385555179878629566}
+  - component: {fileID: 8404189714708657953}
   - component: {fileID: 8568067165225539851}
   - component: {fileID: 4126803406442009075}
   - component: {fileID: 1399075199747505308}
   - component: {fileID: 6096271188791565233}
   - component: {fileID: 101517199249277751}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,12 +63,25 @@ Transform:
   m_GameObject: {fileID: 4837041229236110276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1423, y: 0.1423, z: 0}
-  m_LocalScale: {x: 1.1146886, y: 1.0497279, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6594065844786463714}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8404189714708657953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837041229236110276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0813973aa4dea249927dfb620d24c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveProyectileScript
+  ActiveProyectile: 0
 --- !u!212 &8568067165225539851
 SpriteRenderer:
   serializedVersion: 2
@@ -115,9 +129,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 878730201263409496, guid: 1a3780b0bc2fbaf4b9fe6fc9cc5b63ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b3cba4c910c274b45ba8d5efbc74bfe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,17 +197,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.004276991, y: 0.01111877}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 2.4157438, y: 1.7537869}
   m_EdgeRadius: 0
 --- !u!198 &6096271188791565233
 ParticleSystem:
@@ -384,8 +398,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0, b: 0.7228956, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.056943893, a: 1}
+      minColor: {r: 0.8705883, g: 0.8431373, b: 0.9058824, a: 1}
+      maxColor: {r: 0.21568629, g: 0.15686275, b: 0.30980393, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -832,8 +846,8 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0
     donutRadius: 0.2
-    m_Position: {x: -0.008626878, y: -0.4730288, z: -0.031226924}
-    m_Rotation: {x: 273.5978, y: -0.0009772968, z: 0.00006516027}
+    m_Position: {x: 0, y: -0.4730288, z: -0.031226924}
+    m_Rotation: {x: 270.47, y: -0.0009772968, z: 0.00006516027}
     m_Scale: {x: 0.99999994, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -913,7 +927,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.25900674
+      value: 1.3198938
       mode: 0
       spread: 0
       speed:
@@ -4971,7 +4985,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 6.71
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
