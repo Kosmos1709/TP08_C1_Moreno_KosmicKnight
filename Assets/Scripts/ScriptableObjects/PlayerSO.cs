@@ -7,5 +7,5 @@ public class PlayerSO : ScriptableObject
     public int Damage;//AbstractPlayerstats
     public int JumpForce; //AbstractPlayerstats
     public int speed; //AbstractPlayerstats
-    public int Gold; //AbstractPlayerstats
+    public int Keys; //AbstractPlayerstats
 }

@@ -20,7 +20,16 @@ public class InteractionsEnemy : abstractEnemy
             MovimentPlayer player = FindObjectOfType<MovimentPlayer>();
             statsenemy.TakeDamage(player.Damage);
         }
+        //Invicible
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Invicible"))
+        {
+            speed *= -1;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+            Change = !Change;
 
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

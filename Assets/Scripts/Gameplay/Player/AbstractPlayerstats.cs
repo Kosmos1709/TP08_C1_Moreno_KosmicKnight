@@ -6,7 +6,7 @@ public abstract class AbstractPlayerstats : MonoBehaviour
     public int Damage = 1;
     public int JumpForce = 5;
     public int speed = 5;
-    public int Gold = 0;
+    public int Keys = 0;
     public float RaycastDistance = 0.1f;
     [SerializeField] private PlayerSO playerSO;
     [SerializeField] public LayerMask floorLayer;
@@ -14,11 +14,12 @@ public abstract class AbstractPlayerstats : MonoBehaviour
     [SerializeField] public bool isGrounded;
     void Start()
     {
+        Keys = 0;
         playerSO.health = health;
         playerSO.Damage = Damage;
         playerSO.JumpForce = JumpForce;
         playerSO.speed = speed;
-        playerSO.Gold = Gold;
+        playerSO.Keys = Keys;
         rb = GetComponent<Rigidbody2D>();
         isGrounded = false;
     }
@@ -28,6 +29,6 @@ public abstract class AbstractPlayerstats : MonoBehaviour
         playerSO.Damage = Damage;
         playerSO.JumpForce = JumpForce;
         playerSO.speed = speed;
-        playerSO.Gold = Gold;
+        playerSO.Keys = Keys;
     }
 }

@@ -20,14 +20,15 @@ public class AbstractPickeable : MonoBehaviour
         movimentPlayer.DobleJumpPickeable = true;
     }
 
-    public void ActivationMoreHeal()
+    public void ActivationMoreHeal()//    [LISTO]
     {
         HealBarPlayer healBarPlayer = FindObjectOfType<HealBarPlayer>();
         healBarPlayer.HealBar.value += 1;
     }
-    public void GetKeys()
+    public void GetKeys()//    [LISTO]
     {
-        //add keys en otro script
+        MovimentPlayer movimentPlayer = FindObjectOfType<MovimentPlayer>();
+        movimentPlayer.Keys += 1;
         Destroy(gameObject);
     }
 

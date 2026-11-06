@@ -16,6 +16,7 @@ public class HealBarPlayer : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private float ForceKnockback = 1f;
     [SerializeField] public bool isDead;
+    [SerializeField] private Transform transformpositionplayer;
 
 
     private void Awake()
@@ -39,6 +40,14 @@ public class HealBarPlayer : MonoBehaviour
             HealBar.value -= 1;
             float direction = math.sign(transform.position.x - collision.transform.position.x);
             rb.AddForce(new Vector2(direction * ForceKnockback, 3f), ForceMode2D.Impulse);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("void"))
+        {
+            HealBar.value -= 1;
+            transform.position = new Vector3(transformpositionplayer.position.x, transformpositionplayer.position.y, transformpositionplayer.position.z);
         }
     }
     public void Update()

@@ -6,20 +6,34 @@ public class MovimentPlayer :  AbstractPlayerstats
     [SerializeField] private AtackPlayer atackPlayer;
     [SerializeField] private HealBarPlayer healbarplayer;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject WinPanel;
+    [SerializeField] private AudioSource WinSound;
+
     [Header("Variables")]
     [SerializeField] public float horizonLook;
     [SerializeField] public bool DobleJumpPickeable = false;
     [SerializeField] public bool DobleJump = false;
     public float LocalscaleVar;
+    private bool playingWinSound = false;
     void Start()
     {
         healbarplayer = GetComponent<HealBarPlayer>();
         atackPlayer = GetComponent<AtackPlayer>();
     }
+    private void Playwin()
+    {
+        WinPanel.SetActive(true);
+        Time.timeScale = 0f;
+        WinSound.Play();
+        playingWinSound = true;
+    }
     void Update()
     {
-
-        if (healbarplayer.isDead == false)
+        if (Keys>=3 && !playingWinSound)
+        {
+            Playwin();
+        }
+        if (healbarplayer.isDead == false  && Keys < 3)
         {
             float horizontalX = Input.GetAxis("Horizontal");
 
@@ -72,6 +86,7 @@ public class MovimentPlayer :  AbstractPlayerstats
         
 
     }
+    
     //esto dibuja el raycast par el dev
     void OnDrawGizmos()
     {
