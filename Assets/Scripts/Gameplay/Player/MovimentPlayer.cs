@@ -8,6 +8,7 @@ public class MovimentPlayer :  AbstractPlayerstats
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject WinPanel;
     [SerializeField] private AudioSource WinSound;
+    [SerializeField] private AudioSource WalkSound;
 
     [Header("Variables")]
     [SerializeField] public float horizonLook;
@@ -26,6 +27,11 @@ public class MovimentPlayer :  AbstractPlayerstats
         Time.timeScale = 0f;
         WinSound.Play();
         playingWinSound = true;
+    }
+    //la anide a una animacion de caminata
+    public void Walking()
+    {
+        WalkSound.Play();
     }
     void Update()
     {
@@ -74,6 +80,7 @@ public class MovimentPlayer :  AbstractPlayerstats
             // cambiar direccion de la mira del personaje 
             horizonLook = Input.GetAxisRaw("Horizontal");
             LocalscaleVar = transform.localScale.x;
+           
             if (horizonLook > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
