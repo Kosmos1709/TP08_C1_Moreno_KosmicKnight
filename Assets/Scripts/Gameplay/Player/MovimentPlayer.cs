@@ -11,6 +11,8 @@ public class MovimentPlayer :  AbstractPlayerstats
     [SerializeField] private AudioSource WalkSound;
 
     [Header("Variables")]
+    // Warning: [SerializeField] public es redundante y deja el campo mutable desde afuera (horizonLook, DobleJumpPickeable, DobleJump, LocalscaleVar).
+    // Usá [SerializeField] private y una property de solo lectura donde otra clase lo necesite.
     [SerializeField] public float horizonLook;
     [SerializeField] public bool DobleJumpPickeable = false;
     [SerializeField] public bool DobleJump = false;
@@ -35,6 +37,7 @@ public class MovimentPlayer :  AbstractPlayerstats
     }
     void Update()
     {
+        // Suggestion: el 3 es un número mágico (también en la línea 42). Llevá la cantidad de llaves para ganar a un ScriptableObject del nivel.
         if (Keys>=3 && !playingWinSound)
         {
             Playwin();
@@ -45,6 +48,8 @@ public class MovimentPlayer :  AbstractPlayerstats
 
             Vector2 position = transform.position;
 
+            // Warning: el jugador tiene Rigidbody2D y lo movés escribiendo transform.position en Update, lo que pelea con la física (atraviesa paredes, jitter).
+            // Seteá rb.linearVelocity = new Vector2(horizontalX * speed, rb.linearVelocity.y) en FixedUpdate.
             transform.position = new Vector2(position.x + horizontalX * speed * Time.deltaTime, position.y);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RaycastDistance, floorLayer);
             isGrounded = hit.collider != null;
@@ -60,6 +65,8 @@ public class MovimentPlayer :  AbstractPlayerstats
                 //si esta en el piso puede saltar sin mas
                 if (isGrounded )
                 {
+                    // Error: el salto no reproduce ningún sonido, y la consigna pide que todas las acciones del jugador estén animadas y con sonido (J6, S3).
+                    // Agregá un AudioSource de salto y llamalo acá y en el doble salto de la línea 68.
                     rb.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
                 }
                 //y si no esta en el piso y tiene activo el salto doble, puede saltar una vez mas
@@ -71,6 +78,7 @@ public class MovimentPlayer :  AbstractPlayerstats
             }
 
             // condicionales para animaciones
+            // Suggestion: los nombres de parámetros del Animator son strings mágicos. Cachealos con Animator.StringToHash en campos static readonly.
             animator.SetFloat("SpeedAnimator", Mathf.Abs(horizontalX));
             animator.SetFloat("SpeedJump", rb.linearVelocity.y);
             animator.SetBool("Grounded", isGrounded);

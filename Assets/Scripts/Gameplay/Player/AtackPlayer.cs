@@ -4,6 +4,8 @@ public class AtackPlayer : MonoBehaviour
 
 {
     //damage 1
+    // Warning: el estado del power up vive en el pickup de la escena, que se destruye al agarrarlo (ActiveProyectileScript.cs:10).
+    // Si la referencia queda sin asignar, la línea 47 tira NullReferenceException. Guardá un bool privado en el jugador y que el pickup lo active.
     [SerializeField] public ActiveProyectileScript activeProyectileScript;
     [Header("Components")]
     [SerializeField] private GameObject ProyectilPrefab;
@@ -38,8 +40,11 @@ public class AtackPlayer : MonoBehaviour
         {
             Atacking ();
             MeleSound.Play();
+            // Suggestion: pisás CDAtack con un 0.5f literal, así el valor del inspector solo vale para el primer ataque. Separá cooldown (serializado) y timer (privado).
             CDAtack = 0.5f;
                 timeatack = 0.5f;
+            // Suggestion: esta llamada nunca dispara, porque timeatack se acaba de poner en 0.5f y ShootInAtackPlayer exige timeatack <= 0.
+            // El disparo real lo hace el evento de Atack.anim. Sacala o documentá la intención.
             ShootInAtackPlayer();
 
         }

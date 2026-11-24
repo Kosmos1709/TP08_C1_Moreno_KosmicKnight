@@ -15,14 +15,19 @@ public class InteractionsEnemy : abstractEnemy
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Warning: LayerMask.NameToLayer con strings mágicos ("Mele", "Invicible", "Proyectile", "Enemy", "Obstacle") en cada colisión.
+        // Cachealos en Awake en campos int, o usá LayerMask serializados.
         if (collision.gameObject.layer == LayerMask.NameToLayer("Mele") )
         {
+            // Warning: FindObjectOfType recorre toda la escena en cada golpe y está obsoleto en Unity 6.
+            // Leé el daño desde el collider que te golpeó (collision.GetComponentInParent<MovimentPlayer>()) o serializá la referencia.
             MovimentPlayer player = FindObjectOfType<MovimentPlayer>();
             statsenemy.TakeDamage(player.Damage);
         }
         //Invicible
         if (collision.gameObject.layer == LayerMask.NameToLayer("Invicible"))
         {
+            // Suggestion: el bloque de dar vuelta al enemigo está copiado 4 veces (líneas 26, 45, 54 y 95). Extraelo a un método Flip().
             speed *= -1;
             Vector3 scale = transform.localScale;
             scale.x *= -1;
@@ -37,6 +42,7 @@ public class InteractionsEnemy : abstractEnemy
         
         if ( collision.gameObject.layer == LayerMask.NameToLayer("Proyectile"))
         {
+            // Warning: de nuevo FindObjectOfType en cada impacto de proyectil. El daño debería venir del proyectil.
             MovimentPlayer player = FindObjectOfType<MovimentPlayer>();
             statsenemy.TakeDamage(player.Damage);
         }
@@ -62,6 +68,8 @@ public class InteractionsEnemy : abstractEnemy
     void Update()
     {
       //esta condicional solo ejecuta atacar cuando sea verdadero
+        // Bug: no se chequea statsenemy.isDead, así que un golem muerto que todavía tiene al jugador en el raycast sigue llamando a StartAtack
+        // durante la animación de muerte. Agregá && !statsenemy.isDead.
         if (AtackBoll && !statsenemy.deadSound.isPlaying)
         {
             statsenemy.StartAtack();
@@ -103,6 +111,7 @@ public class InteractionsEnemy : abstractEnemy
         {
             if (statsenemy.CanWalk==true)
             {
+                    // Warning: el enemigo tiene Rigidbody2D y se mueve con transform.Translate en Update. Movelo con rb.linearVelocity en FixedUpdate.
                     transform.Translate(Vector2.right * speed * Time.deltaTime);
             }
 

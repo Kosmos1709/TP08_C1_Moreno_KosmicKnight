@@ -44,6 +44,8 @@ public class AudioMixerScript : MonoBehaviour
     private void SliderMaster(float value)
     {
         audiomixer.SetFloat("Master", value);
+        // Warning: escribir en el ScriptableObject en runtime no persiste en un build: al cerrar el juego se pierden los volúmenes.
+        // Guardalos en PlayerPrefs (D2) y cargalos en Start.
         volumenValues.MasterVolumeobject = value;
     }
     private void SliderBackground(float value)

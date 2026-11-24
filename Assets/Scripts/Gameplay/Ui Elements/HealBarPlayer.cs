@@ -1,3 +1,4 @@
+// Suggestion: Unity.Mathematics se importa solo para math.sign. Mathf.Sign hace lo mismo sin la dependencia.
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 public class HealBarPlayer : MonoBehaviour
 {
     [Header("Gameobjects")]
+    // Warning: la vida del jugador se guarda en el value del Slider (la UI es el modelo) y el campo health de AbstractPlayerstats nunca se usa.
+    // Guardá la vida en un int privado y que la barra solo la muestre.
     [SerializeField] public Slider HealBar;
     [SerializeField] private GameObject LosePanel;
 
@@ -22,6 +25,7 @@ public class HealBarPlayer : MonoBehaviour
     private void Awake()
     {
         isDead = false;
+        // Suggestion: el 7 está hardcodeado acá y en las líneas 56 y 58. Leelo de la vida máxima en el PlayerSO.
         HealBar.value = 7f;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();

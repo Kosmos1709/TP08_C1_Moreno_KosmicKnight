@@ -1,3 +1,4 @@
+// Suggestion: using System no se usa. Borralo.
 using System;
 using UnityEngine;
 

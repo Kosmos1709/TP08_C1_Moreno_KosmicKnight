@@ -16,6 +16,7 @@ public class AbstractPickeable : MonoBehaviour
 
     public void ActivationDobleJump()//    [LISTO]
     {
+        // Warning: FindObjectOfType en cada pickup (líneas 19, 25 y 30). Obtené el componente del collider que tocó el pickup y pasalo como parámetro.
         MovimentPlayer movimentPlayer = FindObjectOfType<MovimentPlayer>();
         movimentPlayer.DobleJumpPickeable = true;
     }
@@ -29,6 +30,7 @@ public class AbstractPickeable : MonoBehaviour
     {
         MovimentPlayer movimentPlayer = FindObjectOfType<MovimentPlayer>();
         movimentPlayer.Keys += 1;
+        // Suggestion: GetKeys destruye el objeto y KeyScript vuelve a llamar Destroy(gameObject) justo después. Dejá la destrucción en un solo lugar.
         Destroy(gameObject);
     }
 

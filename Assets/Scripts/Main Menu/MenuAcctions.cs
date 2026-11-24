@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Error: la clase MenuAccion está en un archivo que se llama distinto (MenuAcctions.cs). Unity lo compila pero tira un warning.
+// Renombrá el archivo o la clase para que coincidan.
 public class MenuAccion : MonoBehaviour
 {
     [Header("Buttons")]
@@ -50,6 +52,7 @@ public class MenuAccion : MonoBehaviour
     {
         buttonAudio.Play();
         Time.timeScale = 1f;
+        // Suggestion: nombres de escena como strings ("Gameplay", "MainMenu") repetidos acá y en WinLoseUI.cs. Centralizalos en constantes.
         SceneManager.LoadScene("Gameplay");
     }
     private void OnButtonVolumeClick()
@@ -65,6 +68,7 @@ public class MenuAccion : MonoBehaviour
         PanelCredits.SetActive(!PanelCredits.activeSelf);
 
     }
+    // Suggestion: OnButtonHTPClick está conectado a BtnBack y carga MainMenu. El nombre no describe lo que hace; renombralo a OnButtonBackClick.
     private void OnButtonHTPClick()
     {
         buttonAudio.Play();
